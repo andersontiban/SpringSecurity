@@ -1,0 +1,24 @@
+version: '3'
+services:
+  springboot:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    ports:
+      - "8080:8080"
+    depends_on:
+      - db
+    environment:
+      SPRING_DATASOURCE_URL: jdbc:postgresql://db:5432/andersontiban
+      SPRING_DATASOURCE_USERNAME: andersontiban
+      SPRING_DATASOURCE_PASSWORD: test
+
+  db:
+    image: postgres:latest
+    environment:
+      POSTGRES_USER: andersontiban
+      POSTGRES_PASSWORD: test
+      POSTGRES_DB: andersontiban
+    ports:
+      - "5432:5432"
+
