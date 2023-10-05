@@ -6,6 +6,7 @@ import com.anderson.security.user.User;
 import com.anderson.security.user.UserRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.AuthenticationException;
@@ -34,6 +35,9 @@ public class AuthenticateService {
                 .build();
 
         Optional<User> exist = userRepository.findByEmail(user.getEmail());
+        if (exist.isPresent()) {
+            return null;
+        }
 
         userRepository.save(user);
         var jwtToken = jwtService.generateToken(user);
