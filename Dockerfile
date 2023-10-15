@@ -18,4 +18,4 @@ FROM openjdk:17.0.1-jdk-slim
 #COPY --from=build /target/SpringSecurity-0.0.1-SNAPSHOT.jar SpringSecurity.jar
 COPY --from=build /target/security-0.0.1-SNAPSHOT.jar security.jar
 EXPOSE 8080
-ENTRYPOINT ["java","-jar","SpringSecurity.jar"]
+ENTRYPOINT ["java","-jar","security.jar"]
