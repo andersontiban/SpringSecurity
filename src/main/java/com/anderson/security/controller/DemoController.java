@@ -27,7 +27,7 @@ public class DemoController {
     }
 
     @PostMapping("/new")
-    public ResponseEntity<String> add(@RequestBody TodosEntity todo) {
+    public ResponseEntity<String> createTodo(@RequestBody TodosEntity todo, Authentication authentication) {
         todosService.addItem(todo);
         return new ResponseEntity<>("Todo added", HttpStatus.OK);
     }
