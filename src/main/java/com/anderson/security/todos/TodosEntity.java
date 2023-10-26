@@ -1,15 +1,18 @@
 package com.anderson.security.todos;
 
 import com.anderson.security.user.User;
+import com.fasterxml.jackson.annotation.JsonBackReference;
 import jakarta.persistence.*;
-import lombok.AllArgsConstructor;
+
 import lombok.Builder;
 import lombok.Data;
+import lombok.NoArgsConstructor;
+
+import java.util.Optional;
 
 @Entity
 @Data
-@AllArgsConstructor
-@Builder
+@NoArgsConstructor
 public class TodosEntity {
 
     @Id
@@ -17,6 +20,7 @@ public class TodosEntity {
     private Long id;
     private String content;
 
+    @JsonBackReference
     @ManyToOne
     @JoinColumn(name = "user_id", nullable = false)
     private User user;

@@ -21,13 +21,21 @@ public class DemoController {
     private final TodosService todosService;
     private final UserService userService;
 
+    //helper method get userId
+    public Long getUserIdFromAuthenticationContext(Authentication authentication) {
+        UserDetails userDetails = (UserDetails) authentication.getPrincipal();
+        String userEmail = userDetails.getUsername();
+        Long userId = userService.getUserId(userEmail);
+        return userId;
+    }
+
     @GetMapping("/list")
     public List<TodosEntity> listTest() {
         return todosService.getAll();
     }
 
     @PostMapping("/new")
-    public ResponseEntity<String> createTodo(@RequestBody TodosEntity todo, Authentication authentication) {
+    public ResponseEntity<String> createTodo(@RequestBody TodosEntity todo) {
         todosService.addItem(todo);
         return new ResponseEntity<>("Todo added", HttpStatus.OK);
     }

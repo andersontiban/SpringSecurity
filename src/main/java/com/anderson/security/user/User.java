@@ -1,6 +1,7 @@
 package com.anderson.security.user;
 
 import com.anderson.security.todos.TodosEntity;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 import jakarta.persistence.*;
 import lombok.*;
 import org.springframework.security.core.GrantedAuthority;
@@ -17,6 +18,7 @@ import java.util.List;
 @AllArgsConstructor
 @NoArgsConstructor
 @Entity
+@Setter
 @Table(name = "_user")
 public class User implements UserDetails {
 
@@ -28,6 +30,7 @@ public class User implements UserDetails {
     private String email;
     private String password;
 
+    @JsonManagedReference
     @OneToMany(mappedBy = "user", cascade = CascadeType.ALL, orphanRemoval = true)
     private List<TodosEntity> todos = new ArrayList<>();
 
