@@ -4,6 +4,7 @@ import com.anderson.security.todos.TodosEntity;
 import com.anderson.security.todos.TodosService;
 import com.anderson.security.user.UserService;
 import lombok.AllArgsConstructor;
+import lombok.Getter;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.core.Authentication;
@@ -47,6 +48,14 @@ public class DemoController {
         Long userID = userService.getUserId(username);
         return "The user id is " + userID;
 
+    }
+
+    /**
+     * Get all todos assocaited with the logged in user
+     */
+    @GetMapping("/todos")
+    public List<TodosEntity> listTodosForUser() {
+        return todosService.getTodosByUser();
     }
 
 

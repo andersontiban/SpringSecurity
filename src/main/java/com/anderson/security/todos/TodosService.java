@@ -40,6 +40,7 @@ public class TodosService {
             if (user == null) {
                 return new ResponseEntity<>("Could not retrieve or find user from DB", HttpStatus.CONFLICT);
             }
+            System.out.println(user.get().getId());
             todo.setUser(new User()
                     .builder().id(user.get().getId())
                     .firstName(user.get().getFirstName())
@@ -51,5 +52,19 @@ public class TodosService {
             System.out.println(e);
         }
         return new ResponseEntity<>("Added todo", HttpStatus.OK);
+    }
+
+    /**
+     * Gets all todos asscoaited with a User
+     * @return list of todo entities
+     */
+    public List<TodosEntity> getTodosByUser() {
+        Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+        String currentPrincipalName = authentication.getName();
+        Optional<User> user = userRepository.findByEmail(currentPrincipalName);
+        int id = user.get().getId();
+        return todosRepository.findAllByUserId(id);
+
+
     }
 }

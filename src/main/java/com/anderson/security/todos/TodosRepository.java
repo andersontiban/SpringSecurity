@@ -7,7 +7,6 @@ import java.util.List;
 
 @Repository
 public interface TodosRepository extends JpaRepository<TodosEntity, Long> {
-//
-//    List<TodosEntity>
+    List<TodosEntity> findAllByUserId(int id);
 
 }
