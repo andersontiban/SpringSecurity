@@ -15,6 +15,7 @@ import java.util.List;
 import java.util.Optional;
 
 @RestController
+@CrossOrigin(origins = "http://localhost:3000")
 @AllArgsConstructor
 @RequestMapping("/api/v1")
 public class DemoController {
@@ -56,6 +57,11 @@ public class DemoController {
     @GetMapping("/todos")
     public List<TodosEntity> listTodosForUser() {
         return todosService.getTodosByUser();
+    }
+
+    @GetMapping("/testHello")
+    public String testHello() {
+        return "hello from spring backend ;)";
     }
 
 
