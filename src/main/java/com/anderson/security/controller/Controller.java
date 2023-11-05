@@ -6,7 +6,7 @@ import org.springframework.web.bind.annotation.*;
 
 @RestController
 //@CrossOrigin(origins = "http://localhost:3000")
-@CrossOrigin(origins = "https://todo-list-springboot.onrender.com")
+@CrossOrigin(origins = "https://todofrontend-tr1b.onrender.com")
 @RequestMapping(value = "/api/v1/auth")
 @RequiredArgsConstructor
 public class Controller {

@@ -16,7 +16,7 @@ import java.util.Optional;
 
 @RestController
 //@CrossOrigin(origins = "http://localhost:3000")
-@CrossOrigin(origins = "https://todo-list-springboot.onrender.com")
+@CrossOrigin(origins = "https://todofrontend-tr1b.onrender.com")
 @AllArgsConstructor
 @RequestMapping("/api/v1")
 public class DemoController {
